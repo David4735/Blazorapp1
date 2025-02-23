@@ -1,9 +1,27 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Расчёт площади</PageTitle>
 
-<h1>Привет, мир!</h1>
+<h1>Калькулятор площади</h1>
 
-Добро пожаловать
+<label>Длина (мм):</label>
+<input type="number" @bind="length" step="0.01" />
 
-<Counter IncrementAmount="10" />
+<label>Ширина (мм):</label>
+<input type="number" @bind="width" step="0.01" />
+
+<button @onclick="CalculateArea">Рассчитать</button>
+
+<h2>Результат:</h2>
+<p>Площадь (в м²): @result</p>
+
+@code {
+    private double length { get; set; }
+    private double width { get; set; }
+    private double result { get; set; }
+
+    private void CalculateArea()
+    {
+        result = (length * width) / 1_000_000;
+    }
+}
